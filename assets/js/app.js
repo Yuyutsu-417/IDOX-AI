@@ -1,9 +1,8 @@
 const preloader = document.getElementById("preloader");
-
 setTimeout(() => {
-    preloader.classList.add("d-none")
-    preloader.classList.add("overflow-hidden")
-}, 3000)
+  preloader.classList.add("d-none");
+  document.body.classList.remove("overflow-hidden");
+}, 1500);
 
 $('.slider-1').slick({
     dots: false,
@@ -73,11 +72,21 @@ $('.slider-1').slick({
 $('.slider-2').slick({
     autoplay: false,
     centerMode: true,
-    centerPadding: '270px',
+    centerPadding: '500px',
     slidesToShow: 1,
     dots: true,
     arrows: false,
     responsive: [
+        {
+            breakpoint: 1500,
+            settings: {
+              infinite: true,
+              slidesToShow: 1,
+              centerMode: true,
+              centerPadding: "270px",
+            },
+        },
+          
         {
             breakpoint: 992,
             settings: {
@@ -124,6 +133,7 @@ let label = document.querySelector(".label");
 let menu = document.querySelector("#menu");
 let open = 0;
 let aTags = document.querySelectorAll("#menu li a");
+let nav = document.querySelector("nav")
 
 aTags.forEach((c) => {
     c.addEventListener("click", () => {
@@ -131,6 +141,7 @@ aTags.forEach((c) => {
             menu.style.right ='-100%'; 
             document.body.classList.remove("overflow-y-hidden");
             label.classList.remove("label-switch");
+            nav.classList.add("bg-gredient")
             open--;
         }
     })
@@ -141,6 +152,7 @@ label.addEventListener("click", () => {
         menu.style.right = 0;
         document.body.classList.add("overflow-y-hidden");
         label.classList.add("label-switch");
+        nav.classList.remove("bg-gredient")
         open++;
     }
 
@@ -148,6 +160,7 @@ label.addEventListener("click", () => {
         menu.style.right = '-100%';
         document.body.classList.remove("overflow-y-hidden");
         label.classList.remove("label-switch");
+        nav.classList.add("bg-gredient")
         open--;
     }
 });
